@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\api\apiAuthController;
+use App\Http\Controllers\api\homeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::post('register', [apiAuthController::class, 'register']);
+Route::post('login', [apiAuthController::class, 'login']);
+
+Route::get('me', [apiAuthController::class, 'me']);
+Route::post('logout', [apiAuthController::class, 'logout']);
+Route::put('profile', [apiAuthController::class, 'updateProfile']);
+Route::delete('account', [apiAuthController::class, 'deleteAccount']);
+
+
+
+Route::group([], function () {
+
+    Route::get('/sliders', [homeController::class, 'getingSliders']);
+    Route::get('/notifications', [homeController::class, 'getingNotification']);
 });

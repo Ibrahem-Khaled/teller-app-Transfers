@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->enum('role', ['admin', 'employee', 'user'])->default('user');
             $table->boolean('status')->default(1);
 
+            $table->string('api_token', 64)->nullable()->unique();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
