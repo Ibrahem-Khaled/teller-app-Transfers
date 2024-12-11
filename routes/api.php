@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\apiAuthController;
 use App\Http\Controllers\api\homeController;
+use App\Http\Controllers\api\suportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,10 @@ Route::group([], function () {
 
     Route::get('/sliders', [homeController::class, 'getingSliders']);
     Route::get('/notifications', [homeController::class, 'getingNotification']);
+
+    Route::post('/teller-transactions', [homeController::class, 'searchTellerTransaction']);
+    Route::post('/add-teller-transaction', [homeController::class, 'addTellerTransaction']);
+
+    Route::get('user_messages', [suportController::class, 'index']);
+    Route::post('send_message', [suportController::class, 'send_message']);
 });

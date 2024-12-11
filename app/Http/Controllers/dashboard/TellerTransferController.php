@@ -36,8 +36,8 @@ class TellerTransferController extends Controller
             'routeing_number' => 'nullable|string',
         ]);
 
-        $invoiceNumber = 'INV-' . strtoupper(uniqid());
-
+        $invoiceNumber = time() . random_int(1000, 9999);
+ 
         // Handle sender
         $sender = User::firstOrCreate(
             ['phone' => $validated['sender_phone']],
