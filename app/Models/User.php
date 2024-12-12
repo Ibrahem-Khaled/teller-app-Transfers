@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Suport::class, 'user_id');
     }
+
+    public function showEmployeeTellers()
+    {
+        return $this->hasMany(TellerTransfer::class, 'employee_id');
+    }
 }

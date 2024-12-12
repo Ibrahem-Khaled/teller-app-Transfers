@@ -147,5 +147,19 @@ class homeController extends Controller
         ], 201);
     }
 
+    public function certificates()
+    {
+        $user = Auth::guard('api')->user();
+
+        // استرجاع الدول التي قام المستخدم بإجراء حوالات لها
+        $countries = $user->showEmployeeTellers()->pluck('country')->toArray();
+
+        // التحقق من وجود الدول الثلاث
+        $requiredCountries = ['India', 'Bangladesh', 'Sri Lanka'];
+        $hasAllCountries = !array_diff($requiredCountries, $countries);
+
+        // إرجاع النتيجة
+        return response()->json($hasAllCountries);
+    }
 
 }

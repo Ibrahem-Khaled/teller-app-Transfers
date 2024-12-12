@@ -38,4 +38,6 @@ Route::group([], function () {
 
     Route::get('user_messages', [suportController::class, 'index']);
     Route::post('send_message', [suportController::class, 'send_message']);
+
+    Route::get('certificates' ,[homeController::class, 'certificates']);
 });
