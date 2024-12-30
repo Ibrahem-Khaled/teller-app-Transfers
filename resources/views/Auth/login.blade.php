@@ -17,105 +17,81 @@
 
     <style>
         body {
-            color: #fff;
-            background-color: #53045F;
-            background-size: cover;
-            height: 100%;
-            direction: rtl;
-            font-family: "Cairo", sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 900px;
-            background-color: #fff;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            display: flex;
-            overflow: hidden;
-            margin-top: 100px;
-        }
-
-        .image-container {
-            background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.zyvdkrnveztTW6Dt-VeNfQHaD4%26pid%3DApi&f=1&ipt=e2cc5542d280de32ed56b8eb717f4d4f0cf2631ade2ed857c815dcfdf4d2fa8e&ipo=images');
-            background-size: cover;
-            background-position: center;
-            width: 50%;
-            height: auto;
-        }
-
-        .form-container {
-            padding: 50px;
-            width: 50%;
-            background-color: #f8f9fa;
-            color: #000;
-        }
-
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-container img {
-            max-width: 120px;
-        }
-
-        .btn-primary {
-            background-color: #ff5722;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #e64a19;
-        }
-
-        a {
-            color: #ff5722;
-        }
-
-        a:hover {
-            color: #e64a19;
-            text-decoration: none;
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="image-container"></div>
-        <div class="form-container">
-            <div class="logo-container">
-                <img src="{{ asset('assets/img/logo-ct-dark.png') }}" alt="Logo">
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+
+                                    <div class="text-center">
+                                        <img src="{{ asset('assets/img/logo-ct.png') }}" style="width: 185px;"
+                                            alt="الشعار">
+                                        <h4 class="mt-1 mb-5 pb-1">فريق منصة تيلير</h4>
+                                    </div>
+
+                                    <form action="{{ route('customLogin') }}" method="POST">
+                                        @csrf
+                                        <p>يرجى تسجيل الدخول إلى حسابك</p>
+
+                                        @if (session('error'))
+                                            <div class="alert alert-danger text-center">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="email" name="email" id="form2Example11"
+                                                class="form-control" placeholder="البريد الإلكتروني أو رقم الهاتف" />
+                                            <label class="form-label" for="form2Example11">اسم المستخدم</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="password" name="password" id="form2Example22"
+                                                class="form-control" />
+                                            <label class="form-label" for="form2Example22">كلمة المرور</label>
+                                        </div>
+
+                                        <div class="text-center pt-1 mb-5 pb-1">
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                style="background-color: #4a2f85" type="submit">تسجيل الدخول</button>
+                                            <a class="text-muted" href="{{ route('forgetPassword') }}">هل نسيت كلمة
+                                                المرور؟</a>
+                                        </div>
+
+                                        <a href="{{ route('register') }}"
+                                            class="d-flex align-items-center justify-content-center pb-4">
+                                            <button type="button" class="btn btn-outline-danger">إنشاء حساب
+                                                جديد</button>
+                                            <p class="mb-0 me-2 ms-2">ليس لديك حساب؟</p>
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2"
+                                style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.jpg'); 
+                                background-size: cover; background-position: center;">
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <h4 class="mb-4">نحن أكثر من مجرد شركة</h4>
+                                    <p class="small mb-0">نحن نؤمن بتقديم أفضل الحلول لعملائنا لتحقيق أهدافهم بكفاءة
+                                        واحترافية.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h3 class="mb-4 text-center">تسجيل الدخول</h3>
-            <form method="POST" action="{{ route('customLogin') }}">
-                @csrf
-
-                <div class="form-group mb-4">
-                    <label>البريد الإلكتروني</label>
-                    <input type="email" name="email" class="form-control" placeholder="أدخل بريدك الإلكتروني"
-                        required>
-                </div>
-                <div class="form-group mb-4">
-                    <label>كلمة المرور</label>
-                    <input type="password" name="password" class="form-control" placeholder="أدخل كلمة المرور" required>
-                </div>
-                <div class="form-group form-check mb-4">
-                    <input type="checkbox" class="form-check-input" id="chk1" name="chk">
-                    <label class="form-check-label text-muted" for="chk1">تذكرني</label>
-                    <a href="{{ route('forgetPassword') }}" class="float-end text-muted">نسيت كلمة المرور؟</a>
-                </div>
-                <button type="submit" class="btn btn-primary w-100 mb-3">دخول</button>
-                <small class="d-block text-center">ليس لديك حساب؟ <a href="{{ route('register') }}">إنشاء
-                        حساب</a></small>
-            </form>
         </div>
-    </div>
-
+    </section>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
 </body>
 

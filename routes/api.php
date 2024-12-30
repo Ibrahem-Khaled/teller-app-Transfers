@@ -29,7 +29,7 @@ Route::delete('account', [apiAuthController::class, 'deleteAccount']);
 
 
 Route::group([], function () {
-
+ 
     Route::get('/sliders', [homeController::class, 'getingSliders']);
     Route::get('/notifications', [homeController::class, 'getingNotification']);
 

@@ -51,6 +51,15 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'User updated successfully');
     }
+
+    public function updateStatus($userId)
+    {
+        $user = User::findOrFail($userId);
+        $user->status = !$user->status == 1 ? 1 : 0;
+        $user->save();
+
+        return redirect()->back()->with('success', 'User status updated successfully');
+    }
     public function destroy(User $user)
     {
         $user->delete();

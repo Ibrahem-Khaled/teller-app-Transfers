@@ -43,24 +43,28 @@ class AuthController extends Controller
 
     public function customLogin(Request $request)
     {
+        // التحقق من صحة الإدخال
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
+        ], [
+            'email.required' => 'البريد الإلكتروني مطلوب.',
+            'email.email' => 'يجب إدخال بريد إلكتروني صالح.',
+            'password.required' => 'كلمة المرور مطلوبة.',
+            'password.min' => 'يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل.',
         ]);
 
         $credentials = $request->only('email', 'password');
         $remember = $request->has('remember');
 
         if (auth()->attempt($credentials, $remember)) {
-            if (auth()->user()->role == 'admin') {
+            if (auth()->user()->role === 'admin') {
                 return redirect()->route('home.dashboard')->with('success', 'تم تسجيل الدخول بنجاح.');
             } else {
-                $this->logout();
-                return redirect()->back()->with('error', 'تفاصيل تسجيل الدخول غير صحيحة. يرجى المحاولة مرة أخرى.');
+                return redirect()->route('home')->with('success', 'تم تسجيل الدخول بنجاح.');
             }
-        } else {
-            return redirect()->back()->with('error', 'تفاصيل تسجيل الدخول غير صحيحة. يرجى المحاولة مرة أخرى.');
         }
+        return redirect()->back()->with('error', 'تفاصيل تسجيل الدخول غير صحيحة. يرجى المحاولة مرة أخرى.');
     }
 
 
@@ -77,13 +81,17 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'phone' => 'required|unique:users',
+            'address' => 'required|max:255',
             'password' => 'required|min:6',
         ]);
 
         $data = $request->all();
+        $data['role'] = 'employee';
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
 
+        Auth::login($user);
         return redirect()->back()->with('success', 'تم انشاء حسابك بنجاح');
     }
 
@@ -102,12 +110,17 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
+        ], [
+            'email.required' => 'البريد الإلكتروني مطلوب.',
+            'email.email' => 'يجب إدخال بريد إلكتروني صالح.',
         ]);
+
         $user = User::where('email', $request->email)->first();
         if (!$user) {
-            return redirect()->back()->with('error', 'User not found.');
+            return redirect()->back()->withErrors(['email' => 'لم يتم العثور على مستخدم بهذا البريد الإلكتروني.']);
         }
-
-        return redirect()->back()->with('success', 'Password reset link sent to your email.');
+        // إرسال رسالة نجاح
+        return redirect()->back()->with('success', 'تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني.');
     }
+
 }

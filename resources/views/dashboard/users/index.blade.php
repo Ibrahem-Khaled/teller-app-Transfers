@@ -38,6 +38,9 @@
                                 data-phone="{{ $user->phone }}" data-role="{{ $user->role }}"
                                 data-status="{{ $user->status }}" data-bs-toggle="modal"
                                 data-bs-target="#userModal">Edit</button>
+                            <a href="{{ route('user.updateStatus', $user->id) }}"
+                                class="btn btn-info btn-sm">{{ $user->status ? 'Deactivate' : 'Activate' }}</a>
+                                
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')

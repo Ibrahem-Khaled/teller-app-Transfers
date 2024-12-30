@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('address')->nullable();
 
             $table->enum('role', ['admin', 'employee', 'user'])->default('user');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(0);
 
             $table->string('api_token', 64)->nullable()->unique();
 

@@ -17,119 +17,123 @@
 
     <style>
         body {
-            color: #fff;
-            background-color: #53045F;
-            background-size: cover;
-            height: 100%;
-            direction: rtl;
-            font-family: "Cairo", sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 900px;
-            background-color: #fff;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            display: flex;
-            overflow: hidden;
-            margin-top: 3%;
-        }
-
-        .image-container {
-            background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.zyvdkrnveztTW6Dt-VeNfQHaD4%26pid%3DApi&f=1&ipt=e2cc5542d280de32ed56b8eb717f4d4f0cf2631ade2ed857c815dcfdf4d2fa8e&ipo=images');
-            background-size: cover;
-            background-position: center;
-            width: 50%;
-            height: auto;
-        }
-
-        .form-container {
-            padding: 50px;
-            width: 50%;
-            background-color: #f8f9fa;
-            color: #000;
-        }
-
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-container img {
-            max-width: 120px;
-        }
-
-        .btn-primary {
-            background-color: #ff5722;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #e64a19;
-        }
-
-        a {
-            color: #ff5722;
-        }
-
-        a:hover {
-            color: #e64a19;
-            text-decoration: none;
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="image-container"></div>
-        <div class="form-container">
-            <div class="logo-container">
-                <img src="{{ asset('assets/img/logo-ct-dark.png') }}" alt="Logo">
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+
+                                    <div class="text-center">
+                                        <img src="{{ asset('assets/img/logo-ct-dark.png') }}" style="width: 185px;"
+                                            alt="الشعار">
+                                        <h4 class="mt-1 mb-5 pb-1">إنشاء حساب جديد</h4>
+                                    </div>
+
+                                    @if (session('error'))
+                                        <div class="alert alert-danger text-center">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
+                                    <form method="POST" action="{{ route('customRegister') }}">
+                                        @csrf
+
+                                        <p>يرجى ملء البيانات لإنشاء حساب جديد</p>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="text" name="name" id="formName" class="form-control"
+                                                placeholder="أدخل اسمك الكامل" required />
+                                            <label class="form-label" for="formName">الاسم الكامل</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="email" name="email" id="formEmail" class="form-control"
+                                                placeholder="أدخل بريدك الإلكتروني" required />
+                                            <label class="form-label" for="formEmail">البريد الإلكتروني</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="text" name="phone" id="formPhone" class="form-control"
+                                                placeholder="أدخل رقم هاتفك" required />
+                                            <label class="form-label" for="formPhone">رقم الهاتف</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="text" name="address" id="formAddress" class="form-control"
+                                                placeholder="أدخل عنوانك" required />
+                                            <label class="form-label" for="formAddress">العنوان</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="password" name="password" id="formPassword"
+                                                class="form-control" placeholder="أدخل كلمة المرور" required />
+                                            <label class="form-label" for="formPassword">كلمة المرور</label>
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            <input type="password" name="password_confirmation"
+                                                id="formPasswordConfirmation" class="form-control"
+                                                placeholder="أعد إدخال كلمة المرور" required />
+                                            <label class="form-label" for="formPasswordConfirmation">تأكيد كلمة
+                                                المرور</label>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label>طريقة الدفع</label>
+                                            <select name="payment_method" class="form-control">
+                                                <option value="zaincash">زين كاش</option>
+                                                <option value="oneclick">ون كليك</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="text-center pt-1 mb-5 pb-1">
+                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                style="background-color: #4a2f85" type="submit">إنشاء حساب</button>
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-center pb-4">
+                                            <p class="mb-0 me-2">لديك حساب بالفعل؟</p>
+                                            <a href="{{ route('login') }}" class="btn btn-outline-danger">تسجيل
+                                                الدخول</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2"
+                                style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.jpg'); 
+                                background-size: cover; background-position: center;">
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <h4 class="mb-4">نحن هنا لمساعدتك</h4>
+                                    <p class="small mb-0">إذا كنت تواجه أي مشاكل، يرجى التواصل معنا وسنقوم بمساعدتك بكل
+                                        سرور.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h3 class="mb-4 text-center">إنشاء حساب</h3>
-            <form method="POST" action="{{ route('customRegister') }}">
-                @csrf
-
-                <div class="form-group mb-4">
-                    <label>الاسم الكامل</label>
-                    <input type="text" name="name" class="form-control" placeholder="أدخل اسمك الكامل" required>
-                </div>
-                <div class="form-group mb-4">
-                    <label>البريد الإلكتروني</label>
-                    <input type="email" name="email" class="form-control" placeholder="أدخل بريدك الإلكتروني"
-                        required>
-                </div>
-                <div class="form-group mb-4">
-                    <label>رقم الهاتف</label>
-                    <input type="phone" name="phone" id="phone" class="form-control"
-                        placeholder="أدخل رقم هاتفك" required>
-                </div>
-                <div class="form-group mb-4">
-                    <label>عنوان</label>
-                    <input type="text" name="address" id="address" class="form-control" placeholder="أدخل عنوانك"
-                        required>
-                </div>
-                <div class="form-group mb-4">
-                    <label>كلمة المرور</label>
-                    <input type="password" name="password" class="form-control" placeholder="أدخل كلمة المرور" required>
-                </div>
-                <div class="form-group mb-4">
-                    <label>تأكيد كلمة المرور</label>
-                    <input type="password" name="password_confirmation" class="form-control"
-                        placeholder="أعد إدخال كلمة المرور" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100 mb-3">تسجيل</button>
-                <small class="d-block text-center">لديك حساب بالفعل؟ <a href="{{ route('login') }}">تسجيل
-                        الدخول</a></small>
-            </form>
         </div>
-    </div>
-
+    </section>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
 </body>
 

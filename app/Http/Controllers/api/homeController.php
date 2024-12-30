@@ -52,6 +52,11 @@ class homeController extends Controller
             'invoice_number' => 'required|numeric',
             'reciver_name' => 'required|string',
             'reciver_phone' => 'required|string',
+        ], [
+            'invoice_number.required' => 'رقم الحوالة مطلوب.',
+            'invoice_number.numeric' => 'رقم الحوالة يجب أن يكون رقمياً.',
+            'reciver_name.required' => 'اسم المستفيد مطلوب.',
+            'reciver_phone.required' => 'رقم الهاتف مطلوب.',
         ]);
 
         // جلب البيانات من الطلب
@@ -77,74 +82,78 @@ class homeController extends Controller
 
         // التحقق من وجود المعاملة
         if (!$tellerTransaction || $reciver->id !== $tellerTransaction->receiver_id) {
-            return response()->json(['message' => 'No transaction found'], 404);
+            return response()->json([
+                'message' => 'لا يوجد حوالة مطابقة لهذه البيانات.',
+            ], 404);
         }
 
         // إذا كانت البيانات صحيحة
         return response()->json([
-            'message' => 'Transaction found',
+            'message' => 'تم العثور على الحوالة بنجاح.',
             'data' => $tellerTransaction,
         ], 200);
     }
 
     public function addTellerTransaction(Request $request)
     {
-        $validated = $request->validate([
-            'sender_name' => 'required|string|max:255',
-            'sender_phone' => 'required|string|max:15',
-            'receiver_name' => 'required|string|max:255',
-            'receiver_phone' => 'required|string|max:15',
-            'amount' => 'required|numeric|min:0',
-            'country' => 'nullable|string',
-            'type' => 'required|in:send,receive',
-            'paid' => 'required|in:cash,bank',
-            'iban' => 'nullable|string',
-            'swift' => 'nullable|string',
-            'bank_name' => 'nullable|string',
-            'bank_city' => 'nullable|string',
-            'ifsc' => 'nullable|string',
-            'routeing_number' => 'nullable|string',
-        ]);
+        // return response()->json($request->all());
+        try {
+            $validated = $request->validate([
+                'sender_name' => 'required|string|max:255',
+                'sender_phone' => 'required|string|max:15',
+                'receiver_name' => 'required|string|max:255',
+                'receiver_phone' => 'required|string|max:15',
+                'amount' => 'required|numeric|min:0',
+                'country' => 'nullable|string',
+                'type' => 'required|in:send,receive',
+                'paid' => 'required|in:cash,bank',
+                'iban' => 'nullable|string',
+                'swift' => 'nullable|string',
+                'bank_name' => 'nullable|string',
+                'bank_city' => 'nullable|string',
+                'ifsc' => 'nullable|string',
+                'routeing_number' => 'nullable|string',
+            ]);
 
-        $invoiceNumber = time() . random_int(1000, 9999);
+            $invoiceNumber = time() . random_int(1000, 9999);
+            $sender = User::firstOrCreate(
+                ['phone' => $validated['sender_phone']],
+                ['name' => $validated['sender_name']]
+            );
+            $receiver = User::firstOrCreate(
+                ['phone' => $validated['receiver_phone']],
+                ['name' => $validated['receiver_name']]
+            );
 
-        // Handle sender
-        $sender = User::firstOrCreate(
-            ['phone' => $validated['sender_phone']],
-            ['name' => $validated['sender_name']]
-        );
+            $tellerTransaction = TellerTransfer::create([
+                'invoice_number' => $invoiceNumber,
+                'sender_id' => $sender->id,
+                'receiver_id' => $receiver->id,
+                'employee_id' => $request->employee_id,
+                'amount' => $validated['amount'],
+                'country' => $validated['country'],
+                'type' => $validated['type'],
+                'paid' => $validated['paid'],
+                'iban' => $validated['iban'],
+                'swift' => $validated['swift'],
+                'bank_name' => $validated['bank_name'],
+                'bank_city' => $validated['bank_city'],
+                'ifsc' => $validated['ifsc'],
+                'routeing_number' => $validated['routeing_number'],
+            ]);
 
-        // Handle receiver
-        $receiver = User::firstOrCreate(
-            ['phone' => $validated['receiver_phone']],
-            ['name' => $validated['receiver_name']]
-        );
+            $tellerTransaction->load('sender', 'receiver');
+            return response()->json([
+                'message' => 'Teller transaction created successfully',
+                'data' => $tellerTransaction
+            ], 201);
 
-        // Create transfer
-        $tellerTransaction = TellerTransfer::create([
-            'invoice_number' => $invoiceNumber,
-            'sender_id' => $sender->id,
-            'receiver_id' => $receiver->id,
-            'employee_id' => Auth::guard('api')->user()->id,
-            'amount' => $validated['amount'],
-            'country' => $validated['country'],
-            'type' => $validated['type'],
-            'paid' => $validated['paid'],
-            'iban' => $validated['iban'],
-            'swift' => $validated['swift'],
-            'bank_name' => $validated['bank_name'],
-            'bank_city' => $validated['bank_city'],
-            'ifsc' => $validated['ifsc'],
-            'routeing_number' => $validated['routeing_number'],
-        ]);
-
-        $tellerTransaction->load('sender', 'receiver');
-
-        // إرجاع استجابة JSON مع بيانات المعاملة
-        return response()->json([
-            'message' => 'Teller transaction created successfully',
-            'data' => $tellerTransaction
-        ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'An error occurred',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function certificates()

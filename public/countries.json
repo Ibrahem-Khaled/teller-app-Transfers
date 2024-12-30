@@ -1,0 +1,758 @@
+[
+    {
+        "label": "أفغانستان",
+        "value": "Afghanistan"
+    },
+    {
+        "label": "ألبانيا",
+        "value": "Albania"
+    },
+    {
+        "label": "الجزائر",
+        "value": "Algeria"
+    },
+    {
+        "label": "أندورا",
+        "value": "Andorra"
+    },
+    {
+        "label": "أنغولا",
+        "value": "Angola"
+    },
+    {
+        "label": "الأرجنتين",
+        "value": "Argentina"
+    },
+    {
+        "label": "أرمينيا",
+        "value": "Armenia"
+    },
+    {
+        "label": "أستراليا",
+        "value": "Australia"
+    },
+    {
+        "label": "النمسا",
+        "value": "Austria"
+    },
+    {
+        "label": "أذربيجان",
+        "value": "Azerbaijan"
+    },
+    {
+        "label": "البحرين",
+        "value": "Bahrain"
+    },
+    {
+        "label": "بنغلاديش",
+        "value": "Bangladesh"
+    },
+    {
+        "label": "باربادوس",
+        "value": "Barbados"
+    },
+    {
+        "label": "بيلاروسيا",
+        "value": "Belarus"
+    },
+    {
+        "label": "بلجيكا",
+        "value": "Belgium"
+    },
+    {
+        "label": "بليز",
+        "value": "Belize"
+    },
+    {
+        "label": "بنين",
+        "value": "Benin"
+    },
+    {
+        "label": "بوتان",
+        "value": "Bhutan"
+    },
+    {
+        "label": "بوليفيا",
+        "value": "Bolivia"
+    },
+    {
+        "label": "البوسنة والهرسك",
+        "value": "Bosnia and Herzegovina"
+    },
+    {
+        "label": "البرازيل",
+        "value": "Brazil"
+    },
+    {
+        "label": "بروناي",
+        "value": "Brunei"
+    },
+    {
+        "label": "بلغاريا",
+        "value": "Bulgaria"
+    },
+    {
+        "label": "بوركينا فاسو",
+        "value": "Burkina Faso"
+    },
+    {
+        "label": "بوروندي",
+        "value": "Burundi"
+    },
+    {
+        "label": "كمبوديا",
+        "value": "Cambodia"
+    },
+    {
+        "label": "الكاميرون",
+        "value": "Cameroon"
+    },
+    {
+        "label": "كندا",
+        "value": "Canada"
+    },
+    {
+        "label": "الرأس الأخضر",
+        "value": "Cape Verde"
+    },
+    {
+        "label": "جمهورية أفريقيا الوسطى",
+        "value": "Central African Republic"
+    },
+    {
+        "label": "تشاد",
+        "value": "Chad"
+    },
+    {
+        "label": "تشيلي",
+        "value": "Chile"
+    },
+    {
+        "label": "الصين",
+        "value": "China"
+    },
+    {
+        "label": "كولومبيا",
+        "value": "Colombia"
+    },
+    {
+        "label": "جزر القمر",
+        "value": "Comoros"
+    },
+    {
+        "label": "الكونغو",
+        "value": "Congo"
+    },
+    {
+        "label": "كوستاريكا",
+        "value": "Costa Rica"
+    },
+    {
+        "label": "كرواتيا",
+        "value": "Croatia"
+    },
+    {
+        "label": "كوبا",
+        "value": "Cuba"
+    },
+    {
+        "label": "قبرص",
+        "value": "Cyprus"
+    },
+    {
+        "label": "التشيك",
+        "value": "Czech Republic"
+    },
+    {
+        "label": "الدنمارك",
+        "value": "Denmark"
+    },
+    {
+        "label": "جيبوتي",
+        "value": "Djibouti"
+    },
+    {
+        "label": "دومينيكا",
+        "value": "Dominica"
+    },
+    {
+        "label": "جمهورية الدومينيكان",
+        "value": "Dominican Republic"
+    },
+    {
+        "label": "تيمور الشرقية",
+        "value": "East Timor"
+    },
+    {
+        "label": "الإكوادور",
+        "value": "Ecuador"
+    },
+    {
+        "label": "مصر",
+        "value": "Egypt"
+    },
+    {
+        "label": "السلفادور",
+        "value": "El Salvador"
+    },
+    {
+        "label": "غينيا الاستوائية",
+        "value": "Equatorial Guinea"
+    },
+    {
+        "label": "إريتريا",
+        "value": "Eritrea"
+    },
+    {
+        "label": "إستونيا",
+        "value": "Estonia"
+    },
+    {
+        "label": "إسواتيني",
+        "value": "Eswatini"
+    },
+    {
+        "label": "إثيوبيا",
+        "value": "Ethiopia"
+    },
+    {
+        "label": "فيجي",
+        "value": "Fiji"
+    },
+    {
+        "label": "فنلندا",
+        "value": "Finland"
+    },
+    {
+        "label": "فرنسا",
+        "value": "France"
+    },
+    {
+        "label": "الغابون",
+        "value": "Gabon"
+    },
+    {
+        "label": "غامبيا",
+        "value": "Gambia"
+    },
+    {
+        "label": "جورجيا",
+        "value": "Georgia"
+    },
+    {
+        "label": "ألمانيا",
+        "value": "Germany"
+    },
+    {
+        "label": "غانا",
+        "value": "Ghana"
+    },
+    {
+        "label": "اليونان",
+        "value": "Greece"
+    },
+    {
+        "label": "غرينادا",
+        "value": "Grenada"
+    },
+    {
+        "label": "غواتيمالا",
+        "value": "Guatemala"
+    },
+    {
+        "label": "غينيا",
+        "value": "Guinea"
+    },
+    {
+        "label": "غينيا بيساو",
+        "value": "Guinea-Bissau"
+    },
+    {
+        "label": "غيانا",
+        "value": "Guyana"
+    },
+    {
+        "label": "هايتي",
+        "value": "Haiti"
+    },
+    {
+        "label": "هندوراس",
+        "value": "Honduras"
+    },
+    {
+        "label": "المجر",
+        "value": "Hungary"
+    },
+    {
+        "label": "الهند",
+        "value": "India"
+    },
+    {
+        "label": "إندونيسيا",
+        "value": "Indonesia"
+    },
+    {
+        "label": "إيران",
+        "value": "Iran"
+    },
+    {
+        "label": "العراق",
+        "value": "Iraq"
+    },
+    {
+        "label": "أيرلندا",
+        "value": "Ireland"
+    },
+    {
+        "label": "إيطاليا",
+        "value": "Italy"
+    },
+    {
+        "label": "ساحل العاج",
+        "value": "Ivory Coast"
+    },
+    {
+        "label": "جامايكا",
+        "value": "Jamaica"
+    },
+    {
+        "label": "اليابان",
+        "value": "Japan"
+    },
+    {
+        "label": "الأردن",
+        "value": "Jordan"
+    },
+    {
+        "label": "كازاخستان",
+        "value": "Kazakhstan"
+    },
+    {
+        "label": "كينيا",
+        "value": "Kenya"
+    },
+    {
+        "label": "كيريباتي",
+        "value": "Kiribati"
+    },
+    {
+        "label": "الكويت",
+        "value": "Kuwait"
+    },
+    {
+        "label": "قيرغيزستان",
+        "value": "Kyrgyzstan"
+    },
+    {
+        "label": "لاوس",
+        "value": "Laos"
+    },
+    {
+        "label": "لاتفيا",
+        "value": "Latvia"
+    },
+    {
+        "label": "لبنان",
+        "value": "Lebanon"
+    },
+    {
+        "label": "ليسوتو",
+        "value": "Lesotho"
+    },
+    {
+        "label": "ليبيريا",
+        "value": "Liberia"
+    },
+    {
+        "label": "ليبيا",
+        "value": "Libya"
+    },
+    {
+        "label": "ليختنشتاين",
+        "value": "Liechtenstein"
+    },
+    {
+        "label": "ليتوانيا",
+        "value": "Lithuania"
+    },
+    {
+        "label": "لوكسمبورغ",
+        "value": "Luxembourg"
+    },
+    {
+        "label": "مدغشقر",
+        "value": "Madagascar"
+    },
+    {
+        "label": "مالاوي",
+        "value": "Malawi"
+    },
+    {
+        "label": "ماليزيا",
+        "value": "Malaysia"
+    },
+    {
+        "label": "جزر المالديف",
+        "value": "Maldives"
+    },
+    {
+        "label": "مالي",
+        "value": "Mali"
+    },
+    {
+        "label": "مالطا",
+        "value": "Malta"
+    },
+    {
+        "label": "جزر مارشال",
+        "value": "Marshall Islands"
+    },
+    {
+        "label": "موريتانيا",
+        "value": "Mauritania"
+    },
+    {
+        "label": "موريشيوس",
+        "value": "Mauritius"
+    },
+    {
+        "label": "المكسيك",
+        "value": "Mexico"
+    },
+    {
+        "label": "ميكرونيزيا",
+        "value": "Micronesia"
+    },
+    {
+        "label": "مولدوفا",
+        "value": "Moldova"
+    },
+    {
+        "label": "موناكو",
+        "value": "Monaco"
+    },
+    {
+        "label": "منغوليا",
+        "value": "Mongolia"
+    },
+    {
+        "label": "الجبل الأسود",
+        "value": "Montenegro"
+    },
+    {
+        "label": "المغرب",
+        "value": "Morocco"
+    },
+    {
+        "label": "موزمبيق",
+        "value": "Mozambique"
+    },
+    {
+        "label": "ميانمار",
+        "value": "Myanmar"
+    },
+    {
+        "label": "ناميبيا",
+        "value": "Namibia"
+    },
+    {
+        "label": "ناورو",
+        "value": "Nauru"
+    },
+    {
+        "label": "نيبال",
+        "value": "Nepal"
+    },
+    {
+        "label": "هولندا",
+        "value": "Netherlands"
+    },
+    {
+        "label": "نيوزيلندا",
+        "value": "New Zealand"
+    },
+    {
+        "label": "نيكاراغوا",
+        "value": "Nicaragua"
+    },
+    {
+        "label": "النيجر",
+        "value": "Niger"
+    },
+    {
+        "label": "نيجيريا",
+        "value": "Nigeria"
+    },
+    {
+        "label": "كوريا الشمالية",
+        "value": "North Korea"
+    },
+    {
+        "label": "النرويج",
+        "value": "Norway"
+    },
+    {
+        "label": "عمان",
+        "value": "Oman"
+    },
+    {
+        "label": "باكستان",
+        "value": "Pakistan"
+    },
+    {
+        "label": "بالاو",
+        "value": "Palau"
+    },
+    {
+        "label": "فلسطين",
+        "value": "Palestine"
+    },
+    {
+        "label": "بنما",
+        "value": "Panama"
+    },
+    {
+        "label": "بابوا غينيا الجديدة",
+        "value": "Papua New Guinea"
+    },
+    {
+        "label": "باراغواي",
+        "value": "Paraguay"
+    },
+    {
+        "label": "بيرو",
+        "value": "Peru"
+    },
+    {
+        "label": "الفلبين",
+        "value": "Philippines"
+    },
+    {
+        "label": "بولندا",
+        "value": "Poland"
+    },
+    {
+        "label": "البرتغال",
+        "value": "Portugal"
+    },
+    {
+        "label": "قطر",
+        "value": "Qatar"
+    },
+    {
+        "label": "رومانيا",
+        "value": "Romania"
+    },
+    {
+        "label": "روسيا",
+        "value": "Russia"
+    },
+    {
+        "label": "رواندا",
+        "value": "Rwanda"
+    },
+    {
+        "label": "سانت كيتس ونيفيس",
+        "value": "Saint Kitts and Nevis"
+    },
+    {
+        "label": "سانت لوسيا",
+        "value": "Saint Lucia"
+    },
+    {
+        "label": "سانت فنسنت والغرينادين",
+        "value": "Saint Vincent and the Grenadines"
+    },
+    {
+        "label": "ساموا",
+        "value": "Samoa"
+    },
+    {
+        "label": "سان مارينو",
+        "value": "San Marino"
+    },
+    {
+        "label": "ساو تومي وبرينسيب",
+        "value": "Sao Tome and Principe"
+    },
+    {
+        "label": "المملكة العربية السعودية",
+        "value": "Saudi Arabia"
+    },
+    {
+        "label": "السنغال",
+        "value": "Senegal"
+    },
+    {
+        "label": "صربيا",
+        "value": "Serbia"
+    },
+    {
+        "label": "سيشيل",
+        "value": "Seychelles"
+    },
+    {
+        "label": "سيراليون",
+        "value": "Sierra Leone"
+    },
+    {
+        "label": "سنغافورة",
+        "value": "Singapore"
+    },
+    {
+        "label": "سلوفاكيا",
+        "value": "Slovakia"
+    },
+    {
+        "label": "سلوفينيا",
+        "value": "Slovenia"
+    },
+    {
+        "label": "جزر سليمان",
+        "value": "Solomon Islands"
+    },
+    {
+        "label": "الصومال",
+        "value": "Somalia"
+    },
+    {
+        "label": "جنوب أفريقيا",
+        "value": "South Africa"
+    },
+    {
+        "label": "كوريا الجنوبية",
+        "value": "South Korea"
+    },
+    {
+        "label": "جنوب السودان",
+        "value": "South Sudan"
+    },
+    {
+        "label": "إسبانيا",
+        "value": "Spain"
+    },
+    {
+        "label": "سريلانكا",
+        "value": "Sri Lanka"
+    },
+    {
+        "label": "السودان",
+        "value": "Sudan"
+    },
+    {
+        "label": "سورينام",
+        "value": "Suriname"
+    },
+    {
+        "label": "السويد",
+        "value": "Sweden"
+    },
+    {
+        "label": "سويسرا",
+        "value": "Switzerland"
+    },
+    {
+        "label": "سوريا",
+        "value": "Syria"
+    },
+    {
+        "label": "تايوان",
+        "value": "Taiwan"
+    },
+    {
+        "label": "طاجيكستان",
+        "value": "Tajikistan"
+    },
+    {
+        "label": "تنزانيا",
+        "value": "Tanzania"
+    },
+    {
+        "label": "تايلاند",
+        "value": "Thailand"
+    },
+    {
+        "label": "توجو",
+        "value": "Togo"
+    },
+    {
+        "label": "تونغا",
+        "value": "Tonga"
+    },
+    {
+        "label": "ترينيداد وتوباغو",
+        "value": "Trinidad and Tobago"
+    },
+    {
+        "label": "تونس",
+        "value": "Tunisia"
+    },
+    {
+        "label": "تركيا",
+        "value": "Turkey"
+    },
+    {
+        "label": "تركمانستان",
+        "value": "Turkmenistan"
+    },
+    {
+        "label": "توفالو",
+        "value": "Tuvalu"
+    },
+    {
+        "label": "أوغندا",
+        "value": "Uganda"
+    },
+    {
+        "label": "أوكرانيا",
+        "value": "Ukraine"
+    },
+    {
+        "label": "الإمارات العربية المتحدة",
+        "value": "UAE"
+    },
+    {
+        "label": "المملكة المتحدة",
+        "value": "United Kingdom"
+    },
+    {
+        "label": "الولايات المتحدة",
+        "value": "USA"
+    },
+    {
+        "label": "أوروغواي",
+        "value": "Uruguay"
+    },
+    {
+        "label": "أوزبكستان",
+        "value": "Uzbekistan"
+    },
+    {
+        "label": "فانواتو",
+        "value": "Vanuatu"
+    },
+    {
+        "label": "الفاتيكان",
+        "value": "Vatican"
+    },
+    {
+        "label": "فنزويلا",
+        "value": "Venezuela"
+    },
+    {
+        "label": "فيتنام",
+        "value": "Vietnam"
+    },
+    {
+        "label": "اليمن",
+        "value": "Yemen"
+    },
+    {
+        "label": "زامبيا",
+        "value": "Zambia"
+    },
+    {
+        "label": "زيمبابوي",
+        "value": "Zimbabwe"
+    }
+]

@@ -13,7 +13,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('register', [AuthController::class, 'register'])->name('register');
     Route::post('register', [AuthController::class, 'customRegister'])->name('customRegister');
 
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('user', [AuthController::class, 'profile'])->name('profile')->middleware('auth');
     Route::post('/profile', [AuthController::class, 'update'])->name('profile.update');
