@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
@@ -134,7 +134,7 @@
     <!-- قسم الفيديو -->
     <h1 class="text-center mt-5 mb-3">فيديو تعلم التيلر</h1>
     <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/hxJntQKZJf8?si=khzeQnIrFa6KCCKF" title="YouTube video player"
+        <iframe src="https://www.youtube.com/embed/syg4mdPPmlM?si=alGk6crzKFhkTdVE" title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
