@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الملف الشخصي للمحامي</title>
+    @include('components.seo')
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -120,8 +121,7 @@
 <body>
     @include('homeLayouts.nav-bar')
     <div class="profile-header">
-        <img src="{{ $user->avatar ? asset( $user->avatar) : asset('assets/img/logo-ct.png') }}"
-            alt="محامي">
+        <img src="{{ $user->avatar ? asset($user->avatar) : asset('assets/img/logo-ct.png') }}" alt="محامي">
         <h2>{{ $user->name }}</h2>
         <p>{{ $user->role === 'lawyer' ? 'محامي متخصص في القانون الجنائي' : 'مستخدم عادي' }}</p>
     </div>
@@ -184,7 +184,7 @@
                             <div class="post-card">
                                 <h5>{{ $post->title }}</h5>
                                 <p>{{ Str::limit($post->body, 100) }}</p>
-                                <img src="{{ asset( $post->image) }}" alt="Post Image">
+                                <img src="{{ asset($post->image) }}" alt="Post Image">
                                 <a href="#">اقرأ المزيد</a>
                             </div>
                         </div>
