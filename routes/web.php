@@ -6,6 +6,7 @@ use App\Http\Controllers\dashboard\TellerTransferController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\web\homeController;
+use App\Http\Controllers\web\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [homeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('payment', [PaymentController::class, 'index'])->name('payment.page')->middleware('auth');
+Route::post('/payment/process', [PaymentController::class, 'processPayment'])->name('payment.process')->middleware('auth');
+
 
 Route::group(['middleware' => ['auth', 'isActive']], function () {
+
+    //this home routes
+    Route::get('/', [homeController::class, 'index'])->name('home');
 
     //this main routes 
     Route::get('/certificate', [homeController::class, 'certificate'])->name('certificate');

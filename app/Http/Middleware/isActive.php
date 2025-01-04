@@ -12,7 +12,7 @@ class isActive
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check() && auth()->user()->status == 0) {
-            return redirect()->route('home')->with('error', 'حسابك غير نشط. يرجى التواصل مع الادارة.');
+            return redirect()->route('payment.page')->with('error', 'حسابك غير نشط. يرجى التواصل مع الادارة.');
         }
         return $next($request);
     }

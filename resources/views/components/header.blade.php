@@ -126,20 +126,29 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('profile') }}">
                             تعديل البيانات<i class="fas fa-user-edit me-2"></i>
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
-                            تعديل كلمة المرور<i class="fas fa-key me-2"></i>
-                        </a>
+                        <form id="deleteAccountForm" method="POST" action="{{ route('deleteAccount') }}">
+                            @csrf
+                            <button type="button" class="dropdown-item text-danger" onclick="confirmDelete()">
+                                حذف الحساب<i class="fas fa-trash me-2"></i>
+                            </button>
+                        </form>
                     </li>
-                    <li>
-                        <a class="dropdown-item text-danger" href="#">
-                            حذف الحساب<i class="fas fa-trash me-2"></i>
-                        </a>
-                    </li>
+
+                    <script>
+                        function confirmDelete() {
+                            // عرض نافذة تأكيد
+                            if (confirm('هل أنت متأكد أنك تريد حذف حسابك؟ هذه العملية لا يمكن التراجع عنها.')) {
+                                // إذا وافق المستخدم، يتم إرسال الفورم
+                                document.getElementById('deleteAccountForm').submit();
+                            }
+                        }
+                    </script>
+
                     <li>
                         <hr class="dropdown-divider">
                     </li>

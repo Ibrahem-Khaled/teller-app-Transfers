@@ -98,15 +98,6 @@
                                             <label class="form-label" for="formPasswordConfirmation">تأكيد كلمة
                                                 المرور</label>
                                         </div>
-
-                                        <div class="mb-4">
-                                            <label>طريقة الدفع</label>
-                                            <select name="payment_method" class="form-control">
-                                                <option value="zaincash">زين كاش</option>
-                                                <option value="oneclick">ون كليك</option>
-                                            </select>
-                                        </div>
-
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                                                 style="background-color: #4a2f85" type="submit">إنشاء حساب</button>

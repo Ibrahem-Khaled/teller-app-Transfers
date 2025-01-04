@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,27 +11,52 @@ class AuthController extends Controller
 {
     public function profile()
     {
-        $user = User::find(Auth::id());
-        return view('Auth.proflie', compact('user'));
+        return view('Auth.profile');
     }
 
     public function update(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
-            'password' => 'nullable|min:6|confirmed',
+            'email' => 'nullable|email|unique:users,email,' . auth()->id(),
+            'phone' => 'nullable|string|unique:users,phone,' . auth()->id(),
+            'address' => 'nullable|string|max:255',
+            'avatar' => 'nullable|image|max:2048',
         ]);
 
-        $user = Auth::user();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        if ($request->filled('password')) {
-            $user->password = bcrypt($request->input('password'));
+        $user = auth()->user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $avatarPath;
         }
+
         $user->save();
 
-        return redirect()->back()->with('success', 'تم تحديث الملف الشخصي بنجاح.');
+        return redirect()->back()->with('success', 'تم تحديث البيانات بنجاح.');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = auth()->user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->with('error', 'كلمة المرور الحالية غير صحيحة.');
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'تم تغيير كلمة المرور بنجاح.');
     }
 
     public function login()
@@ -99,6 +125,13 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('login')->with('success', 'Logout successful.');
+    }
+    public function deleteAccount()
+    {
+        $user = Auth::user();
+        $user->delete();
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'Account deleted successfully.');
     }
 
     public function forgetPassword()
