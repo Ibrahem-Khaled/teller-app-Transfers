@@ -30,7 +30,7 @@
             <!-- القسم الثالث: التواصل -->
             <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                 <h5 class="text-uppercase mb-4 font-weight-bold text-warning">تواصل معنا</h5>
-                <p><i class="fas fa-map-marker-alt me-2"></i>123 شارع التقنية، المدينة</p>
+                <p><i class="fas fa-map-marker-alt me-2"></i>123 شارع التحرير، القاهرة، مصر</p>
                 <p><i class="fas fa-envelope me-2"></i>belal2016.abdallah@gmail.com</p>
                 <p><i class="fas fa-phone me-2"></i>+962 7 8041 1276</p>
                 <p><i class="fas fa-print me-2"></i>+962 7 8041 1276</p>
