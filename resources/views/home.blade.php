@@ -110,6 +110,41 @@
                 font-size: 0.9rem;
             }
         }
+
+        .training-material {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .training-material h2 {
+            font-size: 1.8rem;
+            color: #4a2f85;
+            margin-bottom: 15px;
+        }
+
+        .training-material h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .training-material p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .training-material .btn {
+            background-color: #4a2f85;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .training-material .btn:hover {
+            background-color: #3a2370;
+        }
     </style>
 </head>
 
@@ -139,6 +174,17 @@
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
     </div>
+
+    <!-- قسم المادة التدريبية -->
+    <div class="training-material text-center mt-5 mb-5">
+        <h2>مادة تدريبية</h2>
+        <p>مادة تدريبية مقدمة من السيدة <strong>سكينة الشمايله</strong>، مدير الامتثال لشركة البريد الأردني.</p>
+        <h3>مكافحة الإرهاب وغسيل الأموال</h3>
+        <a href="{{ asset('section.pptx') }}" download class="btn btn-primary mt-3">
+            <i class="fas fa-download"></i> تحميل المادة التدريبية
+        </a>
+    </div>
+
 
     @include('components.footer')
 
