@@ -44,9 +44,10 @@ class Courses extends Model
     {
         return $this->hasMany(Review::class, 'course_id');
     }
-
-
-
+    // public function userCourses()
+    // {
+    //     return $this->hasMany(UserCourse::class);
+    // }
 
     public function getFinalPriceAttribute()
     {

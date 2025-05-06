@@ -53,6 +53,11 @@
             <i class="fas fa-fw fa-comments"></i>
             <span>التعليقات</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('user-courses.index') }}">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>تسجيلات الدورات</span></a>
+    </li>
     
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

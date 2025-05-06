@@ -5,6 +5,7 @@ use App\Http\Controllers\dashboard\CommentController;
 use App\Http\Controllers\dashboard\CourseController;
 use App\Http\Controllers\dashboard\mainController;
 use App\Http\Controllers\dashboard\ReviewController;
+use App\Http\Controllers\dashboard\UserCourseController;
 use App\Http\Controllers\dashboard\UsersController;
 use App\Http\Controllers\dashboard\VideoController;
 use App\Http\Controllers\homeController;
@@ -26,12 +27,12 @@ Route::get('/about-us', [homeController::class, 'about'])->name('about.us');
 Route::get('/contact-us', [homeController::class, 'contact'])->name('contact.us');
 Route::get('/courses/{category}', [homeController::class, 'courses'])->name('courses');
 Route::get('/payment', [homeController::class, 'payment'])->name('payment');
+
 Route::group(['middleware' => ['auth', 'check.subscription']], function () {
 
     Route::get('/course-details/{course}/{video?}', [HomeController::class, 'courseDetails'])->name('course.details');
     Route::post('/video/{video}/comment', [HomeController::class, 'storeComment'])->name('videos.comments.store');
 });
-
 
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'check.role:super_admin']], function () {
@@ -59,6 +60,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'check.role:supe
 
     Route::resource('comments', CommentController::class);
 
+    Route::resource('user-courses', UserCourseController::class);
+    Route::patch('user-courses/{userCourse}/complete', [UserCourseController::class, 'complete'])
+        ->name('user-courses.complete');
 });
 
 
