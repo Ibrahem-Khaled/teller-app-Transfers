@@ -18,10 +18,8 @@ return new class extends Migration {
             $table->string('phone')->nullable()->unique();
             $table->string('address')->nullable();
 
-            $table->enum('role', ['admin', 'employee', 'user'])->default('user');
+            $table->enum('role', ['admin', 'teacher', 'student', 'super_admin'])->default('student');
             $table->boolean('status')->default(0);
-
-            $table->string('api_token', 64)->nullable()->unique();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
@@ -32,7 +30,7 @@ return new class extends Migration {
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'role' => 'admin',
+            'role' => 'super_admin',
             'password' => Hash::make('123456'),
             'status' => 1
         ]);

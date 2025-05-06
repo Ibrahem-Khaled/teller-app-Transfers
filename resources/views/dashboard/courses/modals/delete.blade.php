@@ -1,0 +1,25 @@
+<div class="modal fade" id="deleteCourseModal{{ $course->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="deleteCourseModalLabel{{ $course->id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteCourseModalLabel{{ $course->id }}">حذف الدورة</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('courses.destroy', $course->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <p>هل أنت متأكد من حذف الدورة <strong>{{ $course->name }}</strong>؟</p>
+                    <p class="text-muted">سيتم نقل الدورة إلى سلة المحذوفات ويمكن استعادتها لاحقاً.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-danger">حذف</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\dashboard\AppNotificationController;
-use App\Http\Controllers\dashboard\SliderController;
-use App\Http\Controllers\dashboard\TellerTransferController;
-use App\Http\Controllers\dashboard\UserController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\web\homeController;
-use App\Http\Controllers\web\PaymentController;
+use App\Http\Controllers\dashboard\CategoryController;
+use App\Http\Controllers\dashboard\CommentController;
+use App\Http\Controllers\dashboard\CourseController;
+use App\Http\Controllers\dashboard\mainController;
+use App\Http\Controllers\dashboard\ReviewController;
+use App\Http\Controllers\dashboard\UsersController;
+use App\Http\Controllers\dashboard\VideoController;
+use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,33 +20,45 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('payment', [PaymentController::class, 'index'])->name('payment.page')->middleware('auth');
-Route::post('/payment/process', [PaymentController::class, 'processPayment'])->name('payment.process')->middleware('auth');
 
+Route::get('/', [homeController::class, 'index'])->name('home');
+Route::get('/about-us', [homeController::class, 'about'])->name('about.us');
+Route::get('/contact-us', [homeController::class, 'contact'])->name('contact.us');
+Route::get('/courses/{category}', [homeController::class, 'courses'])->name('courses');
+Route::get('/payment', [homeController::class, 'payment'])->name('payment');
+Route::group(['middleware' => ['auth', 'check.subscription']], function () {
 
-Route::group(['middleware' => ['auth', 'isActive']], function () {
-
-    //this home routes
-    Route::get('/', [homeController::class, 'index'])->name('home');
-
-    //this main routes 
-    Route::get('/certificate', [homeController::class, 'certificate'])->name('certificate');
-    Route::get('/full/course', [homeController::class, 'fullCourse'])->name('fullCourse');
-    Route::get('/invoice/{invoiceId}', [homeController::class, 'invoice'])->name('invoice');
+    Route::get('/course-details/{course}/{video?}', [HomeController::class, 'courseDetails'])->name('course.details');
+    Route::post('/video/{video}/comment', [HomeController::class, 'storeComment'])->name('videos.comments.store');
 });
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'check.role:admin']], function () {
 
-    Route::get('/', [DashboardController::class, 'index'])->name('home.dashboard');
 
-    Route::resource('users', UserController::class);
-    Route::get('user/updateStatus/{userId}', [UserController::class, 'updateStatus'])->name('user.updateStatus');
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'check.role:super_admin']], function () {
 
-    Route::resource('sliders', SliderController::class);
+    Route::get('/', [mainController::class, 'index'])->name('home.dashboard');
 
-    Route::resource('notifications', AppNotificationController::class);
+    Route::resource('users', UsersController::class)->except(['show']);
+    Route::get('users/{user}', [UsersController::class, 'show'])->name('users.show');
 
-    Route::resource('teller-transfers', TellerTransferController::class);
+
+    Route::resource('categories', CategoryController::class)->except(['show']);
+    Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+    Route::post('categories/{id}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
+    Route::delete('categories/{id}/force-delete', [CategoryController::class, 'forceDelete'])->name('categories.force-delete');
+
+    Route::resource('courses', CourseController::class)->except(['show']);
+    Route::get('courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+    Route::post('courses/{id}/restore', [CourseController::class, 'restore'])->name('courses.restore');
+    Route::delete('courses/{id}/force-delete', [CourseController::class, 'forceDelete'])->name('courses.force-delete');
+
+    Route::resource('videos', VideoController::class);
+
+    Route::resource('reviews', ReviewController::class);
+    Route::patch('reviews/{review}/approve', [ReviewController::class, 'approve'])->name('reviews.approve');
+
+    Route::resource('comments', CommentController::class);
+
 });
 
 

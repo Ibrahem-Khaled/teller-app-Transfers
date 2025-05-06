@@ -1,0 +1,35 @@
+<div class="modal fade" id="deleteReviewModal{{ $review->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteReviewModalLabel">حذف التقييم</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('reviews.destroy', $review) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i> هل أنت متأكد من حذف هذا التقييم؟
+                    </div>
+                    <div class="text-center">
+                        <div class="rating-stars mb-2">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <i
+                                    class="fas fa-star {{ $i <= $review->rating ? 'text-warning' : 'text-secondary' }}"></i>
+                            @endfor
+                        </div>
+                        <p class="mb-0">{{ Str::limit($review->content, 100) }}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-danger">حذف</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

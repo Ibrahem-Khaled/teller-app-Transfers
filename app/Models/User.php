@@ -21,8 +21,8 @@ class User extends Authenticatable
         'role',
         'status',
         'password',
-        'api_token',
     ];
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -30,20 +30,40 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'status' => 'boolean',
     ];
 
-    public function tellerTransactions()
+    public function courses()
     {
-        return $this->hasMany(TellerTransfer::class, 'receiver_id');
+        return $this->hasMany(Courses::class, 'teacher_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function userCourses()
+    {
+        return $this->belongsToMany(Courses::class, 'user_courses', 'user_id', 'course_id')
+            ->withTimestamps();
     }
 
-    public function suportMessages()
+
+    public function getRoleNameAttribute()
     {
-        return $this->hasMany(Suport::class, 'user_id');
+        return trans('roles.' . $this->role);
     }
 
-    public function showEmployeeTellers()
+    public function getStatusTextAttribute()
     {
-        return $this->hasMany(TellerTransfer::class, 'employee_id');
+        return $this->status ? trans('general.active') : trans('general.inactive');
+    }
+
+    public function getAvatarUrlAttribute()
+    {
+        return $this->avatar ? asset('storage/' . $this->avatar) : asset('assets/img/avatar-male.jpeg');
     }
 }
