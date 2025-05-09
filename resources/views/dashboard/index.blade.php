@@ -55,7 +55,7 @@
             {{-- التقييمات المعتمدة --}}
             <div class="col-xl-3 col-md-6 mb-4">
                 <x-stats-card icon="fas fa-check-circle" title="التقييمات المعتمدة" :value="$approvedReviewsCount" color="primary"
-                    subIcon="fas fa-percentage" :subValue="round(($approvedReviewsCount / $reviewsCount) * 100) . '%'" />
+                    subIcon="fas fa-percentage" :numerator="$approvedReviewsCount" :denominator="$reviewsCount" />
             </div>
         </div>
 
