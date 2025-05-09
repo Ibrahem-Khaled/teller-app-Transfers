@@ -15,52 +15,56 @@ class mainController extends Controller
 {
     public function index()
     {
-        // إحصائيات المستخدمين
-        $usersCount = User::count();
-        $activeUsersCount = User::where('status', true)->count();
-        $adminsCount = User::whereIn('role', ['admin', 'super_admin'])->count();
-        $studentsCount = User::where('role', 'student')->count();
-
-        $teachersCount = User::where('role', 'teacher')->count();
-
         // إحصائيات الدورات
-        $coursesCount = Courses::count();
+        $coursesCount     = Courses::count();
         $freeCoursesCount = Courses::where('price', '0.00')->count();
-        $popularCourses = Courses::withCount('reviews')
+
+        // حساب النسبة بشكل آمن
+        $percentageFreeCourses = $coursesCount > 0
+            ? round($freeCoursesCount / $coursesCount * 100) . '%'
+            : '0%';
+
+        // إحصائيات الفيديوهات
+        $videosCount     = Video::count();
+        $freeVideosCount = Video::where('is_free', true)->count();
+
+        // حساب النسبة بشكل آمن
+        $percentageFreeVideos = $videosCount > 0
+            ? round($freeVideosCount / $videosCount * 100) . '%'
+            : '0%';
+
+        // باقي الإحصائيات...
+        $usersCount            = User::count();
+        $activeUsersCount      = User::where('status', true)->count();
+        $adminsCount           = User::whereIn('role', ['admin', 'super_admin'])->count();
+        $studentsCount         = User::where('role', 'student')->count();
+        $teachersCount         = User::where('role', 'teacher')->count();
+        $popularCourses        = Courses::withCount('reviews')
             ->orderBy('reviews_count', 'desc')
             ->take(5)
             ->get();
-
-        // إحصائيات الفيديوهات
-        $videosCount = Video::count();
-        $freeVideosCount = Video::where('is_free', true)->count();
-        $totalViews = Video::sum('views');
-
-        // إحصائيات التقييمات والتعليقات
-        $reviewsCount = Review::count();
-        $approvedReviewsCount = Review::where('is_approved', true)->count();
-        $commentsCount = Comment::count();
-
-        // إحصائيات الأقسام
-        $categoriesCount = Category::count();
-
-        // آخر المستخدمين المسجلين
-        $latestUsers = User::latest()->take(5)->get();
-
-        // آخر الدورات المضافة
-        $latestCourses = Courses::latest()->take(5)->get();
-        $courses = Courses::get();
+        $totalViews            = Video::sum('views');
+        $reviewsCount          = Review::count();
+        $approvedReviewsCount  = Review::where('is_approved', true)->count();
+        $commentsCount         = Comment::count();
+        $categoriesCount       = Category::count();
+        $latestUsers           = User::latest()->take(5)->get();
+        $latestCourses         = Courses::latest()->take(5)->get();
+        $courses               = Courses::all();
 
         return view('dashboard.index', compact(
             'usersCount',
             'activeUsersCount',
             'adminsCount',
             'studentsCount',
+            'teachersCount',
             'coursesCount',
             'freeCoursesCount',
+            'percentageFreeCourses',   // النسبة المحسوبة
             'popularCourses',
             'videosCount',
             'freeVideosCount',
+            'percentageFreeVideos',    // النسبة المحسوبة
             'totalViews',
             'reviewsCount',
             'approvedReviewsCount',
@@ -68,8 +72,7 @@ class mainController extends Controller
             'categoriesCount',
             'latestUsers',
             'latestCourses',
-            'courses',
-            'teachersCount'
+            'courses'
         ));
     }
 }

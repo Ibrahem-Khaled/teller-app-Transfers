@@ -45,10 +45,8 @@
             </div>
 
             {{-- الدورات المجانية --}}
-            <div class="col-xl-3 col-md-6 mb-4">
-                <x-stats-card icon="fas fa-gift" title="الدورات المجانية" :value="$freeCoursesCount" color="info"
-                    subIcon="fas fa-percentage" :subValue="round(($freeCoursesCount / $coursesCount) * 100) . '%'" />
-            </div>
+            <x-stats-card icon="fas fa-gift" title="الدورات المجانية" :value="$freeCoursesCount" color="info"
+                subIcon="fas fa-percentage" :subValue="$percentageFreeCourses" />
 
             {{-- الفيديوهات المجانية --}}
             <div class="col-xl-3 col-md-6 mb-4">
