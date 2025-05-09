@@ -49,10 +49,8 @@
                 subIcon="fas fa-percentage" :subValue="$percentageFreeCourses" />
 
             {{-- الفيديوهات المجانية --}}
-            <div class="col-xl-3 col-md-6 mb-4">
-                <x-stats-card icon="fas fa-film" title="الفيديوهات المجانية" :value="$freeVideosCount" color="warning"
-                    subIcon="fas fa-percentage" :subValue="round(($freeVideosCount / $videosCount) * 100) . '%'" />
-            </div>
+            <x-stats-card icon="fas fa-video" title="الفيديوهات المجانية" :value="$freeVideosCount" color="success"
+                subIcon="fas fa-percentage" :subValue="$percentageFreeVideos" />
 
             {{-- التقييمات المعتمدة --}}
             <div class="col-xl-3 col-md-6 mb-4">
