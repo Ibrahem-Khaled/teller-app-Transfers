@@ -35,9 +35,9 @@
                                 <div class="card-body p-md-5 mx-md-4">
 
                                     <div class="text-center">
-                                        <img src="{{ asset('assets/img/logo-ct-dark.png') }}" style="width: 185px;"
+                                        <img src="{{ asset('assets/img/logo-ct.png') }}" style="width: 185px;"
                                             alt="الشعار">
-                                        <h4 class="mt-1 mb-5 pb-1">إنشاء حساب جديد</h4>
+                                        {{-- <h4 class="mt-1 mb-5 pb-1">إنشاء حساب جديد</h4> --}}
                                     </div>
 
                                     @if (session('error'))

@@ -37,7 +37,7 @@ class homeController extends Controller
 
     public function about()
     {
-        $worker_team = User::whereIn('role', ['admin', 'super_admin', 'teacher'])
+        $worker_team = User::whereIn('role', ['team_work'])
             ->withCount([
                 'courses' => function ($query) {
                     $query->where('status', 'active');

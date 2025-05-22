@@ -5,9 +5,11 @@ use App\Http\Controllers\dashboard\CommentController;
 use App\Http\Controllers\dashboard\CourseController;
 use App\Http\Controllers\dashboard\mainController;
 use App\Http\Controllers\dashboard\ReviewController;
+use App\Http\Controllers\dashboard\TeamworkController;
 use App\Http\Controllers\dashboard\UserCourseController;
 use App\Http\Controllers\dashboard\UsersController;
 use App\Http\Controllers\dashboard\VideoController;
+use App\Http\Controllers\dashboard\WebsiteController;
 use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +65,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'check.role:supe
     Route::resource('user-courses', UserCourseController::class);
     Route::patch('user-courses/{userCourse}/complete', [UserCourseController::class, 'complete'])
         ->name('user-courses.complete');
+
+
+    Route::get('website', [WebsiteController::class, 'edit'])->name('website.edit');
+    Route::put('website', [WebsiteController::class, 'update'])->name('website.update');
+    Route::get('website/reset', [WebsiteController::class, 'ensureWebsiteUserExists'])->name('website.reset');
+
+    Route::resource('teamwork', TeamworkController::class)->except(['show']);
 });
 
 

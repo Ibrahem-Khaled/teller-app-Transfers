@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration {
     /**
@@ -18,7 +20,7 @@ return new class extends Migration {
             $table->string('phone')->nullable()->unique();
             $table->string('address')->nullable();
 
-            $table->enum('role', ['admin', 'teacher', 'student', 'super_admin'])->default('student');
+            $table->enum('role', ['admin', 'teacher', 'student', 'super_admin', 'website', 'team_work'])->default('student');
             $table->boolean('status')->default(0);
 
             $table->timestamp('email_verified_at')->nullable();
@@ -28,11 +30,28 @@ return new class extends Migration {
         });
 
         DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'role' => 'super_admin',
-            'password' => Hash::make('123456'),
-            'status' => 1
+            [
+                'name'           => 'Admin',
+                'email'          => 'admin@admin.com',
+                'role'           => 'super_admin',
+                'phone'      => null,               // إضافتها هنا
+                'address'    => null,               // وإضافتها هنا
+                'password'       => Hash::make('123456'),
+                'status'         => 1,
+                'created_at'     => now(),
+                'updated_at'     => now(),
+            ],
+            [
+                'name'           => 'Teacher',
+                'email'          => 'teacher@teacher.com',
+                'phone'          => '0123456789',
+                'address'        => 'Teacher Address',
+                'role'           => 'website',
+                'password'       => Hash::make('123456'),
+                'status'         => 1,
+                'created_at'     => now(),
+                'updated_at'     => now(),
+            ],
         ]);
     }
 

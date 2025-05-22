@@ -13,24 +13,34 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
+        // 1) الأدوار المسموح بها فقط
         $roles = ['admin', 'teacher', 'student', 'super_admin'];
-        $selectedRole = $request->role ?? 'all';
-        $search = $request->search;
 
-        $users = User::when($selectedRole != 'all', function ($query) use ($selectedRole) {
-            return $query->where('role', $selectedRole);
-        })
-            ->when($search, function ($query, $search) {
-                return $query->where('name', 'like', "%$search%")
-                    ->orWhere('email', 'like', "%$search%")
-                    ->orWhere('phone', 'like', "%$search%");
+        // 2) قيمة الفلتر الافتراضية (كل الأدوار من المصفوفة)
+        $selectedRole = $request->role ?? 'all';
+        $search       = $request->search;
+
+        // 3) بناء الاستعلام
+        $users = User::whereIn('role', $roles)                                    // قصر النتائج على الأدوار المحددة فقط :contentReference[oaicite:0]{index=0}
+            ->when($selectedRole !== 'all', function ($q) use ($selectedRole) {  // إذا اختار المستخدم دورًا محددًا
+                return $q->where('role', $selectedRole);
+            })
+            ->when($search, function ($q, $search) {                              // شرط البحث
+                return $q->where(function ($sub) use ($search) {                  // تجميع أو
+                    $sub->where('name',  'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%")
+                        ->orWhere('phone', 'like', "%{$search}%");
+                });
             })
             ->latest()
-            ->paginate(10);
+            ->paginate(10)
+            ->withQueryString();
 
-        $usersCount = User::count();
+
+        // إحصائيات
+        $usersCount       = User::count();
         $activeUsersCount = User::where('status', 1)->count();
-        $adminsCount = User::where('role', 'admin')->orWhere('role', 'super_admin')->count();
+        $adminsCount      = User::whereIn('role', ['admin', 'super_admin'])->count();
 
         return view('dashboard.users.index', compact(
             'users',

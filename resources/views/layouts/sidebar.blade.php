@@ -27,7 +27,17 @@
             <i class="fas fa-fw fa-users"></i>
             <span>المستخدمين</span></a>
     </li>
-   
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('website.edit') }}">
+            <i class="fas fa-fw fa-globe"></i>
+            <span>ادارة بيانات الموقع </span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('teamwork.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span> ادارة الفريق العمل </span></a>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link" href="{{ route('categories.index') }}">
             <i class="fas fa-fw fa-list"></i>
@@ -58,7 +68,7 @@
             <i class="fas fa-fw fa-user-graduate"></i>
             <span>تسجيلات الدورات</span></a>
     </li>
-    
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
