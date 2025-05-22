@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $website = User::where('role', 'website')->firstOrFail();
+        $website = User::where('role', 'website')->first();
 
         View::share('website', $website);
     }
